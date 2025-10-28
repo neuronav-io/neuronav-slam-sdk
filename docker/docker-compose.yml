@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  neuronav-rtabmap:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: neuronav/rtabmap:latest
+    container_name: neuronav_rtabmap
+    
+    # Required for GUI applications
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - ROS_DOMAIN_ID=5
+    
+    # Required for RealSense camera access
+    privileged: true
+    
+    # Mount necessary volumes
+    volumes:
+      # X11 socket for GUI
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # RealSense devices
+      - /dev:/dev
+      # Shared workspace (optional)
+      - ./workspace:/root/workspace
+      # Persist RTAB-Map database
+      - rtabmap_data:/root/.ros
+    
+    # Network mode for ROS2 communication
+    network_mode: host
+    
+    # Device access
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/bus/usb:/dev/bus/usb
+    
+    # Keep container running
+    stdin_open: true
+    tty: true
+    
+    # Runtime for NVIDIA GPU (optional)
+    # runtime: nvidia
+
+volumes:
+  rtabmap_data:
+    driver: local

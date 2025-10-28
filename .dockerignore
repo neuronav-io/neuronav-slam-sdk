@@ -1,0 +1,56 @@
+# Git files
+.git
+.gitignore
+
+# Python cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist
+build
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation build
+docs/_build
+
+# Test coverage
+.coverage
+htmlcov
+
+# Virtual environments
+venv
+env
+ENV
+
+# ROS build artifacts
+devel/
+logs/
+build/
+bin/
+lib/
+msg_gen/
+srv_gen/
+
+# RTAB-Map databases (except examples)
+*.db
+!examples/*.db
+
+# Workspace directory (will be mounted)
+workspace/
+
+# Docker files (not needed in context)
+Dockerfile
+docker-compose.yml
+.dockerignore
