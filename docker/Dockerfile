@@ -34,12 +34,12 @@ build-essential cmake curl unzip git pkg-config \
 && rm -rf /var/lib/apt/lists/*
 
 # run local bash script to install realsense2 dependencies
-COPY realsense.sh /tmp/install_realsense_dependencies.sh
+COPY drivers/realsense.sh /tmp/install_realsense_dependencies.sh
 RUN chmod +x /tmp/install_realsense_dependencies.sh && \
     /tmp/install_realsense_dependencies.sh
 
 # run local bash script to install OAK-D Pro dependencies
-COPY oakd_pro.sh /tmp/install_oakd_pro_dependencies.sh
+COPY drivers/oakd_pro.sh /tmp/install_oakd_pro_dependencies.sh
 RUN chmod +x /tmp/install_oakd_pro_dependencies.sh && \
     /tmp/install_oakd_pro_dependencies.sh
 
